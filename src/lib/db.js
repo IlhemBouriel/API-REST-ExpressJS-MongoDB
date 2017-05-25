@@ -1,5 +1,8 @@
 var mongoose = require('mongoose');
-var mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/movies';
+var mongoUrl = process.env.MONGO_URL || 'mongodb://ilhem:ilhem@ds133311.mlab.com:33311/ilhem';
+
+var mongoose = require('mongoose');
+var DB = "mongodb://Projetheroku94:ilhem@ds133311.mlab.com:33311/ilhem" ;
 
 module.exports = function(app) {
   mongoose.connect(mongoUrl, {
@@ -12,7 +15,6 @@ module.exports = function(app) {
     }
   });
 
-  // mongoose.set('debug', true);
 
   return mongoose;
 };

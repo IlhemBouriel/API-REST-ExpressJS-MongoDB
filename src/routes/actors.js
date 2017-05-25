@@ -1,6 +1,7 @@
 var Actor = require('../models/actor');
 var Movie = require('../models/movie');
 
+
 module.exports = {
 
   getAll: function(req, res, next) {
@@ -8,6 +9,36 @@ module.exports = {
       if (err) return res.status(400).json(err);
 
       res.status(200).json(actors);
+
+      var Checker = require("jscs");
+      var checker = new Checker();
+      checker.registerDefaultRules();
+
+checker.configure({
+    "requireCurlyBraces": [
+        "if",
+        "else",
+        "for"
+    ]
+});
+
+
+// Use the Google preset, but override or remove some options
+checker.configure({
+    preset: "google",
+    disallowMultipleLineBreaks: null, // or false
+    validateIndentation: "\t"
+});
+
+var results = checker.checkString("var a = 2;var b = 5; if (a>b) console.log('a>b'); console.log('b>a')");
+var errors = results.getErrorList();
+
+
+results.getErrorList().forEach(function(error) {
+    var colorizeOutput = true;
+    console.log(results.explainError(error, colorizeOutput) + "\n");
+});
+
     });
   },
 
